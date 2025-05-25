@@ -235,6 +235,7 @@ int main(){
                 direcao_inimigo = 1;
                 timer_raio_inimigo = 0;
                 intervalo_raio_inimigo = 1.5f;
+                letra_atual = 0;
 
                 for(i = 0; i < maximo_raios_tela_inimigo; i++){
                     raios_jogador[i].ativo = 0;
