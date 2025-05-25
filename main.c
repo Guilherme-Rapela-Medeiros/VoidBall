@@ -21,27 +21,27 @@ float mais_velocidade(float velocidade){
 
 int main(){
     
-    int dados_niveis[100][2] = {
-    {3, 3}, {3, 4}, {3, 4}, {3, 5}, {3, 5}, 
-    {4, 6}, {4, 6}, {4, 7}, {4, 7}, {4, 8},
-    {5, 8}, {5, 9}, {5, 9}, {5, 10}, {5, 10},
-    {6, 11}, {6, 11}, {6, 12}, {6, 12}, {6, 13},
-    {7, 13}, {7, 14}, {7, 14}, {7, 15}, {7, 15},
-    {8, 16}, {8, 16}, {8, 17}, {8, 17}, {8, 18},
-    {9, 18}, {9, 19}, {9, 19}, {9, 20}, {9, 20},
-    {10, 21}, {10, 21}, {10, 22}, {10, 22}, {10, 23},
-    {11, 23}, {11, 24}, {11, 24}, {11, 25}, {11, 25},
-    {12, 26}, {12, 26}, {12, 27}, {12, 27}, {12, 28},
-    {13, 28}, {13, 29}, {13, 29}, {13, 30}, {13, 30},
-    {14, 31}, {14, 31}, {14, 32}, {14, 32}, {14, 33},
-    {15, 33}, {15, 34}, {15, 34}, {15, 35}, {15, 35},
-    {16, 36}, {16, 36}, {16, 37}, {16, 37}, {16, 38},
-    {17, 38}, {17, 39}, {17, 39}, {17, 40}, {17, 40},
-    {18, 41}, {18, 41}, {18, 42}, {18, 42}, {18, 43},
-    {19, 43}, {19, 44}, {19, 44}, {19, 45}, {19, 45},
-    {20, 46}, {20, 46}, {20, 47}, {20, 47}, {20, 48},
-    {21, 48}, {21, 49}, {21, 49}, {21, 50}, {21, 50},
-    {22, 51}, {22, 51}, {22, 52}, {22, 52}, {22, 53}};
+    float dados_niveis[100][2] = {
+    {3, 3.00}, {3, 3.35}, {3, 3.70}, {3, 4.05}, {3, 4.40},
+    {4, 4.75}, {4, 5.10}, {4, 5.45}, {4, 5.80}, {4, 6.15},
+    {5, 6.50}, {5, 6.85}, {5, 7.20}, {5, 7.55}, {5, 7.90},
+    {6, 8.25}, {6, 8.60}, {6, 8.95}, {6, 9.30}, {6, 9.65},
+    {7, 10.00}, {7, 10.35}, {7, 10.70}, {7, 11.05}, {7, 11.40},
+    {8, 11.75}, {8, 12.10}, {8, 12.45}, {8, 12.80}, {8, 13.15},
+    {9, 13.50}, {9, 13.85}, {9, 14.20}, {9, 14.55}, {9, 14.90},
+    {10, 15.25}, {10, 15.60}, {10, 15.95}, {10, 16.30}, {10, 16.65},
+    {11, 17.00}, {11, 17.35}, {11, 17.70}, {11, 18.05}, {11, 18.40},
+    {12, 18.75}, {12, 19.10}, {12, 19.45}, {12, 19.80}, {12, 20.15},
+    {13, 20.50}, {13, 20.85}, {13, 21.20}, {13, 21.55}, {13, 21.90},
+    {14, 22.25}, {14, 22.60}, {14, 22.95}, {14, 23.30}, {14, 23.65},
+    {15, 24.00}, {15, 24.35}, {15, 24.70}, {15, 25.05}, {15, 25.40},
+    {16, 25.75}, {16, 26.10}, {16, 26.45}, {16, 26.80}, {16, 27.15},
+    {17, 27.50}, {17, 27.85}, {17, 28.20}, {17, 28.55}, {17, 28.90},
+    {18, 29.25}, {18, 29.60}, {18, 29.95}, {18, 30.30}, {18, 30.65},
+    {19, 31.00}, {19, 31.35}, {19, 31.70}, {19, 32.05}, {19, 32.40},
+    {20, 32.75}, {20, 33.10}, {20, 33.45}, {20, 33.80}, {20, 34.15},
+    {21, 34.50}, {21, 34.85}, {21, 35.20}, {21, 35.55}, {21, 35.90},
+    {22, 36.25}, {22, 36.60}, {22, 36.95}, {22, 37.30}, {22, 37.65}};
     int i;
     int largura_tela = 900;
     int altura_tela = 700;
@@ -59,10 +59,12 @@ int main(){
     int letra_atual = 0;
     int largura_inimigo = 80;
     int altura_inimigo = 20;
-    float timer_raio_inimigo = 0;
     int largura_player = 100;
     int altura_player = 20;
-    
+
+    float timer_raio_inimigo = 0;
+    float intervalo_raio_inimigo = 1.5f;
+
     char nome_player[LEN_NOME] = {0};
 
     InitWindow(largura_tela, altura_tela, "VoidBall");
@@ -134,6 +136,7 @@ int main(){
 
                 if(vidas_inimigo == 0){
                     nivel = nivel + 1;
+                    intervalo_raio_inimigo -= 0.01f;
                     PlaySound(level_up);
                 
                     if (nivel > nivel_maximo){
@@ -149,7 +152,7 @@ int main(){
                 }
             }
             
-            if(GetTime() - timer_raio_inimigo >= 1.5f){
+            if(GetTime() - timer_raio_inimigo >= intervalo_raio_inimigo){
                 for( i = 0; i < maximo_raios_tela_inimigo; i++){
                     if(raios_inimigo[i].ativo == 0){
                         raios_inimigo[i].ativo = 1;
@@ -172,6 +175,7 @@ int main(){
                         vidas_inimigo = vidas_inimigo - 1;
                         if(vidas_inimigo == 0 ){
                             nivel= nivel +1;
+                            intervalo_raio_inimigo -= 0.01f;
                             PlaySound(level_up);
 
                             vidas_inimigo = dados_niveis[nivel - 1][0];
@@ -230,11 +234,12 @@ int main(){
                 velocidade_inimigo = 3;
                 direcao_inimigo = 1;
                 timer_raio_inimigo = 0;
+                intervalo_raio_inimigo = 1.5f;
 
                 for(i = 0; i < maximo_raios_tela_inimigo; i++){
                     raios_jogador[i].ativo = 0;
                 }
-                for(int i = 0; i < maximo_raios_tela_inimigo; i++){
+                for( i = 0; i < maximo_raios_tela_inimigo; i++){
                     raios_inimigo[i].ativo = 0;
                 }
                 game_over = 0;
@@ -267,7 +272,7 @@ int main(){
 
             int posX = largura_tela / 2 - 40;
 
-            for (int i = 0; i < LEN_NOME - 1; i++) {
+            for ( i = 0; i < LEN_NOME - 1; i++) {
                 Color cor = WHITE;
                 if (i == letra_atual) {
                     cor = YELLOW;
@@ -284,7 +289,7 @@ int main(){
             Pontuacao_Player *atual = pontuacoes;
             int yPos = 260;
             int contador = 0;
-            while (atual && contador < 5) {
+            while (atual != NULL && contador < 5) {
                 DrawText(TextFormat("%s - %d", atual->nome, atual->pontuacao), largura_tela / 2 - 50, yPos, 20, WHITE);
                 atual = atual->prox;
                 yPos += 30;
