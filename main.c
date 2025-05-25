@@ -73,6 +73,8 @@ int main(){
 
     Sound sound_explosion = LoadSound("sound_explosion.ogg");
 
+    Sound sound_game_over = LoadSound("sound_game_over.mp3");
+
     Texture2D background = LoadTexture("void_imagem.png");
 
     Pontuacao_Player *pontuacoes = carregar_pontuacoes("high_scores.txt");
@@ -113,6 +115,7 @@ int main(){
                 if(vidas_player == 0){
                     game_over = 1;
                     letra_atual = 0;
+                    PlaySound(sound_game_over);
                     memset(nome_player, '\0', LEN_NOME);
                 }
             }
@@ -132,6 +135,7 @@ int main(){
                 
                     if (nivel > nivel_maximo){
                         game_over = 1;
+                        PlaySound(sound_game_over);
                         
                     }else{
                         vidas_inimigo = dados_niveis[nivel - 1][0];
@@ -171,6 +175,7 @@ int main(){
 
                             if (nivel > nivel_maximo){
                                 game_over = 1;
+                                PlaySound(sound_game_over);
                                 
                             }    
                             bola.velocidade.x = mais_velocidade(bola.velocidade.x);
@@ -192,6 +197,7 @@ int main(){
                         PlaySound(sound_explosion);
                         if( vidas_player == 0){
                             game_over = 1;
+                            PlaySound(sound_game_over);
                             memset(nome_player, '\0', LEN_NOME);
                         }
                     }
@@ -293,6 +299,7 @@ int main(){
     UnloadTexture(background);
     UnloadSound(laser_player);
     UnloadSound(sound_explosion);
+    UnloadSound(sound_game_over);
     CloseAudioDevice();
     CloseWindow();
     return 0;          
