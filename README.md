@@ -36,6 +36,13 @@ Para assim criar o arquivo .exe.
 3 - Por fim executar o arquivo .exe com o comando:
 ./VoidBall.exe
 
+# Objetivo do Jogo
+
+O jogo tem como objetivo derrotar o inimigo quantas vezes for possível pelo jogador,enquanto desvia dos ataques dos raios do inimigo, com o máximo de vezes que o inimigo pode ser derrotado sendo 99 vezes.
+
+# Como Jogar
+
+O jogador usa as setas de esquerda⬅️ e direita➡️ do teclado para movimentar a sua barra pela tela horizontalmente, através da Barra o Jogador desvia dos raios disparados pelo inimigo e pode rebater a bola que se acertar o inimigo,causa dano a ele, o Jogador também pode utilizar a barra de espaço para disparar raios contra o inimigo, que caso acertem-o, causam dano.
 
 ## Membros: 
 
