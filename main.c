@@ -64,7 +64,6 @@ int main(){
     
     char nome_player[LEN_NOME] = {0};
 
-
     InitWindow(largura_tela, altura_tela, "VoidBall");
     SetTargetFPS(60);
 
@@ -81,8 +80,6 @@ int main(){
     Raio raios_jogador[MAX_RAIOS_TELA_PLAYER] = {0};
 
     Raio raios_inimigo[MAX_RAIOS_TELA_INIMIGO] = {0};
-
-
 
     while(!WindowShouldClose()){
         if(game_over == 0 ){
