@@ -13,7 +13,11 @@ Pontuacao_Player *Adicionar_pontuacao(Pontuacao_Player *head, const char *nome, 
     novo_no->pontuacao = pontuacao;
     novo_no->prox = NULL;
 
-    if(head == NULL || pontuacao > head->pontuacao){
+    if(head == NULL){
+        novo_no->prox = head;
+        return novo_no;
+    }
+    else if (pontuacao > head->pontuacao){
         novo_no->prox = head;
         return novo_no;
     }
