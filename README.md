@@ -38,7 +38,9 @@ Para assim criar o arquivo .exe.
 
 
 ##Membros: 
+
 ###Organizados por nome - email - username do github
+
 *Demetrius Souza - dspj@cesar.school - Demetriussou
 
 *Guilherme Rapela Medeiros - grm2@cesar.school - Guilherme-Rapela-Medeiros
