@@ -37,7 +37,9 @@ Para assim criar o arquivo .exe.
 ./VoidBall.exe
 
 
-##Membros: 
+## Membros: 
+
+### organizados por nome - email - username do github
 
 Demetrius Souza - dspj@cesar.school - Demetriussou
 
