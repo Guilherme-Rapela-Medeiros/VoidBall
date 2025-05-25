@@ -25,7 +25,7 @@ Inimigo: O inimigo é a barra vermelha que está posicionada no topo da tela, se
 
   Quando o jogo acabar, seja pelo jogador ficar sem vidas ou por chegar ao nível 100, será apresentada uma tela de Game Over, onde o jogador pode escolher 3 letras para designar sua pontuação, após inserir as 3 letras e pressionar "enter" o jogo apresenta as maiores pontuações e a opção de voltar a jogar pressionando a tecla "R".
 
--- Instruções de Compilação -- 
+# Instruções de Compilação 
 
 1 - É necessário ter instada a biblioteca raylib no computador. 
 
@@ -35,3 +35,12 @@ Para assim criar o arquivo .exe.
 
 3 - Por fim executar o arquivo .exe com o comando:
 ./VoidBall.exe
+
+
+##Membros: 
+###Organizados por nome - email - username do github
+*Demetrius Souza - dspj@cesar.school - Demetriussou
+
+*Guilherme Rapela Medeiros - grm2@cesar.school - Guilherme-Rapela-Medeiros
+
+*José Veloso - jvgv@cesar.school - vitor-veloso
