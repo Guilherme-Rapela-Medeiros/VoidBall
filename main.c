@@ -69,15 +69,15 @@ int main(){
     InitAudioDevice();
     SetTargetFPS(60);
 
-    Sound laser_player = LoadSound("laser_player.ogg");
+    Sound laser_player = LoadSound("sounds/laser_player.ogg");
 
-    Sound level_up = LoadSound("level_up.mp3");
+    Sound level_up = LoadSound("sounds/level_up.mp3");
 
-    Sound sound_explosion = LoadSound("sound_explosion.ogg");
+    Sound sound_explosion = LoadSound("sounds/sound_explosion.ogg");
 
-    Sound sound_game_over = LoadSound("sound_game_over.mp3");
+    Sound sound_game_over = LoadSound("sounds/sound_game_over.mp3");
 
-    Texture2D background = LoadTexture("void_imagem.png");
+    Texture2D background = LoadTexture("images/void_imagem.png");
 
     Pontuacao_Player *pontuacoes = carregar_pontuacoes("high_scores.txt");
 
