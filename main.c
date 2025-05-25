@@ -71,6 +71,8 @@ int main(){
 
     Sound laser_player = LoadSound("laser_player.ogg");
 
+    Sound level_up = LoadSound("level_up.mp3");
+
     Sound sound_explosion = LoadSound("sound_explosion.ogg");
 
     Sound sound_game_over = LoadSound("sound_game_over.mp3");
@@ -132,6 +134,7 @@ int main(){
 
                 if(vidas_inimigo == 0){
                     nivel = nivel + 1;
+                    PlaySound(level_up);
                 
                     if (nivel > nivel_maximo){
                         game_over = 1;
@@ -169,6 +172,7 @@ int main(){
                         vidas_inimigo = vidas_inimigo - 1;
                         if(vidas_inimigo == 0 ){
                             nivel= nivel +1;
+                            PlaySound(level_up);
 
                             vidas_inimigo = dados_niveis[nivel - 1][0];
                             velocidade_inimigo = dados_niveis[nivel - 1][1];
@@ -300,6 +304,7 @@ int main(){
     UnloadSound(laser_player);
     UnloadSound(sound_explosion);
     UnloadSound(sound_game_over);
+    UnloadSound(level_up);
     CloseAudioDevice();
     CloseWindow();
     return 0;          
