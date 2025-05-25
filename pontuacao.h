@@ -1,3 +1,6 @@
+#ifndef PONTUACAO_H
+#define PONTUACAO_H
+
 #include "structs.h"
 #include <string.h>
 #include <stdio.h>
@@ -37,3 +40,4 @@ Pontuacao_Player *carregar_pontuacoes(const char *arq){
     fclose(file);
     return head;
 }
+#endif 

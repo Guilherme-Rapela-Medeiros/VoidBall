@@ -5,6 +5,7 @@
 #include <ctype.h>
 #include "structs.h"
 #include "pontuacao.h"
+#include "inputs.h"
 
 #define LEN_NOME 4
 #define MAX_RAIOS_TELA_PLAYER 100
@@ -88,27 +89,7 @@ int main(){
                 direcao_inimigo = direcao_inimigo * -1;
             }
 
-            if(IsKeyPressed(KEY_SPACE)){
-                for(int i = 0; i < maximo_raios_tela_player; i++){
-                    if(raios_jogador[i].ativo == 0){
-                        raios_jogador[i].ativo = 1;
-                        raios_jogador[i].posicao = (Vector2){player.x + largura_player /2, player.y};
-                        break;
-                    }
-                }
-            }           
-            if(IsKeyDown(KEY_RIGHT)){
-                player.x = player.x + velocidade_player;
-                if (player.x + largura_player > largura_tela) {
-                    player.x = largura_tela - largura_player;
-                }
-            }
-            if(IsKeyDown(KEY_LEFT)){
-                player.x = player.x - velocidade_player;
-                if(player.x < 0){
-                    player.x = 0;
-                }
-            }
+            inputs_setas_espaco(&player, largura_tela, velocidade_player,raios_jogador, maximo_raios_tela_player);
          
             bola.posicao.x = bola.posicao.x + bola.velocidade.x;
             bola.posicao.y = bola.posicao.y + bola.velocidade.y;
@@ -213,34 +194,7 @@ int main(){
             }
         }
         else if(game_over == 1){
-            int tecla = GetKeyPressed();
-            if (isalpha(tecla)) {
-                if (letra_atual < LEN_NOME - 1) {
-                    nome_player[letra_atual++] = (char) toupper(tecla);
-                }
-            }       
-            else if (tecla == KEY_BACKSPACE) {
-                if (letra_atual > 0) {
-                    letra_atual--;
-                    nome_player[letra_atual] = '\0';
-                }
-            }
-            else if (tecla == KEY_ENTER) {
-                if (letra_atual > 0) {
-                nome_player[letra_atual] = '\0'; 
-                pontuacoes = Adicionar_pontuacao(pontuacoes, nome_player, nivel * 100);
-                FILE *file = fopen("high_scores.txt", "w");
-                if (file != NULL) {
-                    Pontuacao_Player *atual = pontuacoes;
-                    while(atual != NULL){
-                        fprintf(file, "%s %d\n", atual->nome, atual->pontuacao);
-                        atual = atual->prox;
-                    }
-                    fclose(file);
-                }
-                game_over = 2;
-                }
-            }
+            inputs_alpha(nome_player, &letra_atual, &pontuacoes, nivel, &game_over);                     
         }
         else if (game_over == 2 ){
             if(IsKeyPressed(KEY_R)){
