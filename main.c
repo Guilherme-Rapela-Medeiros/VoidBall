@@ -66,7 +66,12 @@ int main(){
     char nome_player[LEN_NOME] = {0};
 
     InitWindow(largura_tela, altura_tela, "VoidBall");
+    InitAudioDevice();
     SetTargetFPS(60);
+
+    Sound laser_player = LoadSound("laser_player.ogg");
+
+    Sound sound_explosion = LoadSound("sound_explosion.ogg");
 
     Texture2D background = LoadTexture("void_imagem.png");
 
@@ -89,7 +94,7 @@ int main(){
                 direcao_inimigo = direcao_inimigo * -1;
             }
 
-            inputs_setas_espaco(&player, largura_tela, velocidade_player,raios_jogador, maximo_raios_tela_player);
+            inputs_setas_espaco(&player, largura_tela, velocidade_player,raios_jogador, maximo_raios_tela_player,laser_player);
          
             bola.posicao.x = bola.posicao.x + bola.velocidade.x;
             bola.posicao.y = bola.posicao.y + bola.velocidade.y;
@@ -136,9 +141,8 @@ int main(){
                     bola.velocidade.y = mais_velocidade(bola.velocidade.y);
                 }
             }
-
-            timer_raio_inimigo += GetFrameTime();
-            if(timer_raio_inimigo >= 1.5f){
+            
+            if(GetTime() - timer_raio_inimigo >= 1.5f){
                 for( i = 0; i < maximo_raios_tela_inimigo; i++){
                     if(raios_inimigo[i].ativo == 0){
                         raios_inimigo[i].ativo = 1;
@@ -146,9 +150,9 @@ int main(){
                         break;
                     }
                 }
-                timer_raio_inimigo = 0;
+                timer_raio_inimigo = GetTime();
             }
-
+            
             for(i = 0; i < maximo_raios_tela_player; i++){
                 if(raios_jogador[i].ativo == 1){
                     raios_jogador[i].posicao.y -=7;
@@ -185,6 +189,7 @@ int main(){
                     if(CheckCollisionPointRec(raios_inimigo[i].posicao, player)){
                         raios_inimigo[i].ativo = 0;
                         vidas_player--;
+                        PlaySound(sound_explosion);
                         if( vidas_player == 0){
                             game_over = 1;
                             memset(nome_player, '\0', LEN_NOME);
@@ -286,6 +291,9 @@ int main(){
         atual = proximo;
     }
     UnloadTexture(background);
+    UnloadSound(laser_player);
+    UnloadSound(sound_explosion);
+    CloseAudioDevice();
     CloseWindow();
     return 0;          
 }   

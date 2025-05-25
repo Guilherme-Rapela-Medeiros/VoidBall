@@ -6,7 +6,7 @@
 #include <ctype.h>
 #include "pontuacao.h"
 
-void inputs_setas_espaco(Rectangle *player, int largura_tela, int velocidade_player,Raio raios_jogador[], int maximo_raios_tela_player) {
+void inputs_setas_espaco(Rectangle *player, int largura_tela, int velocidade_player,Raio raios_jogador[], int maximo_raios_tela_player, Sound laser_player) {
     if (IsKeyDown(KEY_RIGHT)) {
         player->x += velocidade_player;
         if (player->x + player->width > largura_tela) {
@@ -25,6 +25,7 @@ void inputs_setas_espaco(Rectangle *player, int largura_tela, int velocidade_pla
             if (!raios_jogador[i].ativo) {
                 raios_jogador[i].ativo = 1;
                 raios_jogador[i].posicao = (Vector2){player->x + player->width / 2, player->y};
+                PlaySound(laser_player);
                 break;
             }
         }
