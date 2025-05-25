@@ -8,7 +8,7 @@
 
 Pontuacao_Player *Adicionar_pontuacao(Pontuacao_Player *head, const char *nome, int pontuacao){
     Pontuacao_Player *novo_no = (Pontuacao_Player*)malloc(sizeof(Pontuacao_Player));
-   
+    
     strcpy(novo_no->nome, nome);
     novo_no->pontuacao = pontuacao;
     novo_no->prox = NULL;
@@ -33,7 +33,9 @@ Pontuacao_Player *Adicionar_pontuacao(Pontuacao_Player *head, const char *nome, 
 
 Pontuacao_Player *carregar_pontuacoes(const char *arq){
     FILE *file = fopen(arq, "r");
-
+    if (!file) {
+        return NULL;
+    }
     Pontuacao_Player *head = NULL;
     char nome[LEN_NOME];
     int pontuacao;
